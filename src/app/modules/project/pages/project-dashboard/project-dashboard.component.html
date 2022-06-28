@@ -1,0 +1,21 @@
+<ngtsk-section-header [title]="'I miei progetti'" [button]="{ label: 'Torna ad Home', link: '/', type: 'btn-link' }"></ngtsk-section-header>
+
+<ng-container *ngIf="(projects$ | async) as projects; else loading">
+  <ngtsk-project-list
+      *ngIf="projects.length > 0 ; else noProjects"
+      [projects]="projects"
+      (selectedProject)="selectProject($event)">
+  </ngtsk-project-list>
+  <hr />
+</ng-container>
+
+<hr>
+<ngtsk-project-form (submittedProject)="addNewProject($event)"></ngtsk-project-form>
+
+<ng-template #noProjects>
+  <p>Non è presente nessun progetto</p>
+</ng-template>
+
+<ng-template #loading>
+  <h1>Loading...</h1>
+</ng-template>

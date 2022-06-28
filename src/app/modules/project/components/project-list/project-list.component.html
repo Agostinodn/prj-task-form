@@ -1,0 +1,25 @@
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let project of projects">
+
+    <ngtsk-card [classes]="{'border-info': project.done, 'border-warning': !project.done }">
+     
+      <ng-container data-body>
+        <h5 class="card-title">
+          <span class="badge bg-secondary  rounded-pill">{{ project.code }}</span>
+          {{ project.name }}
+        </h5>
+        <p class="card-text">{{ project.description }}</p>
+        <button class="btn btn-primary btn-sm" (click)="select(project)">Vai al Progetto</button>
+      </ng-container>
+
+      <ng-container data-footer>
+        <small class="text-muted">
+          <span>{{ project.start | date: 'dd/MM/yyyy' }}</span>
+          <span *ngIf="project.end"> - {{ project.end | date: 'dd/MM/yyyy' }}</span>
+        </small>
+      </ng-container>
+
+    </ngtsk-card>
+    
+  </div>
+</div>
